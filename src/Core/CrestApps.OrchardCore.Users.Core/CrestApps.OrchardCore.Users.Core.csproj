@@ -11,12 +11,12 @@
     <PackageTags>$(PackageTags) OrchardCoreCMS Users Core</PackageTags>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="OrchardCore.ContentManagement.Abstractions" />
     <PackageReference Include="OrchardCore.Infrastructure.Abstractions" />
     <PackageReference Include="OrchardCore.Liquid.Abstractions" />
     <PackageReference Include="OrchardCore.Users.Core" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="..\..\Abstractions\CrestApps.OrchardCore.Users.Abstractions\CrestApps.OrchardCore.Users.Abstractions.csproj" />

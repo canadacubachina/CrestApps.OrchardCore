@@ -18,9 +18,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SignalR" />
     <PackageReference Include="OrchardCore.Module.Targets" />
-    <PackageReference Include="OrchardCore.ContentManagement" />
+    <!--<PackageReference Include="OrchardCore.ContentManagement" />
     <PackageReference Include="OrchardCore.ContentTypes.Abstractions" />
-    <PackageReference Include="OrchardCore.DisplayManagement" />
+    <PackageReference Include="OrchardCore.DisplayManagement" />-->
   </ItemGroup>
 
   <ItemGroup>

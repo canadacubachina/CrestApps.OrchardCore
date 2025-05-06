@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Infrastructure.Abstractions" />
+    <!--<PackageReference Include="OrchardCore.Infrastructure.Abstractions" />-->
     <PackageReference Include="Microsoft.Extensions.AI.Abstractions" />
   </ItemGroup>
 

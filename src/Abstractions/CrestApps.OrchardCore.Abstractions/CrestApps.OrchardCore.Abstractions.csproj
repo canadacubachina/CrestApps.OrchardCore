@@ -13,8 +13,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="NuGet.Versioning" />
-		<PackageReference Include="OrchardCore.Abstractions" />
-		<PackageReference Include="OrchardCore.Infrastructure.Abstractions" />
+		<!--<PackageReference Include="OrchardCore.Abstractions" />
+		<PackageReference Include="OrchardCore.Infrastructure.Abstractions" />-->
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\src\GuangCore\GuangCore.TopRef\GuangCore.TopRef.csproj" />
 	</ItemGroup>
 
 </Project>

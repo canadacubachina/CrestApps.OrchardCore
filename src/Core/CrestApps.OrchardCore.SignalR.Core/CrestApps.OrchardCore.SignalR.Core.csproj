@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" />
-    <PackageReference Include="OrchardCore.Abstractions" />
+    <!--<PackageReference Include="OrchardCore.Abstractions" />-->
   </ItemGroup>
 
   <ItemGroup>

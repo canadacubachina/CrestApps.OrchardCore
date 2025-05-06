@@ -11,4 +11,8 @@
     <PackageTags>$(PackageTags) Support</PackageTags>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\GuangCore\GuangCore.TopRef\GuangCore.TopRef.csproj" />
+  </ItemGroup>
+
 </Project>
