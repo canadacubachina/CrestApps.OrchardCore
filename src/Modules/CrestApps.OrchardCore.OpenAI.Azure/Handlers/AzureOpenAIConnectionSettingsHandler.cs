@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Nodes;
+using CrestApps.Azure.Core.Models;
 using CrestApps.OrchardCore.AI.Core;
 using CrestApps.OrchardCore.AI.Models;
-using CrestApps.OrchardCore.Azure.Core.Models;
 using CrestApps.OrchardCore.Core.Handlers;
 using CrestApps.OrchardCore.Models;
 using CrestApps.OrchardCore.OpenAI.Azure.Core;
@@ -57,7 +57,7 @@ internal sealed class AzureOpenAIConnectionSettingsHandler : ModelHandlerBase<AI
             return Task.CompletedTask;
         }
 
-        var metadataNode = data["Properties"]?[nameof(AzureOpenAIConnectionMetadata)]?.AsObject();
+        var metadataNode = data[nameof(AIProviderConnection.Properties)]?[nameof(AzureOpenAIConnectionMetadata)]?.AsObject();
 
         if (metadataNode == null || metadataNode.Count == 0)
         {

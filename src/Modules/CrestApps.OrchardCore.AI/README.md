@@ -111,6 +111,37 @@ This recipe ensures that a **DeepSeek** connection is added or updated within th
 
 If a connection with the same `Name` and `Source` already exists, the recipe updates its properties. Otherwise, it creates a new connection.
 
+### AI Data Source Management 
+
+The **AI Data Source Management** feature enhances **AI Services** by offering a user-friendly interface for managing data sources accessible to AI models. To add data sources, you must first enable at least one feature that supplies a data source. For instance, the **Azure AI Search-Powered Data Source** feature provides access to data stored in Azure AI Search, enabling AI-powered conversational capabilities with that data.
+
+#### Creating Data Source via Recipe
+
+You can add or update data-source using recipe. Here is an example or creating a data-source
+
+
+```
+{
+  "steps": [
+    {
+      "name": "AIDataSource",
+      "DataSources": [
+        {
+          "ProfileSource": "AzureAISearch",
+          "Type": "azure_search",
+          "DisplayText": "Articles (Azure AI Search)",
+          "Properties": {
+            "AzureAIProfileAISearchMetadata": {
+              "IndexName": "articles"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
 ### Defining Chat Profiles Using Code
 
 To define chat profiles programmatically, create a migration class. Here's an example demonstrating how to create a new chat profile:
@@ -172,7 +203,6 @@ You can enhance the AI chat functionality by adding custom functions. To create 
 ```csharp
 public sealed class GetWeatherFunction : AIFunction
 {
-    private const string _locationProperty = "Location";
     public const string TheName = "get_weather";
 
     public GetWeatherFunction()
@@ -180,54 +210,40 @@ public sealed class GetWeatherFunction : AIFunction
         Name = TheName;
         Description = "Retrieves weather information for a specified location.";
 
-        var metadata = new JsonObject()
-        {
-            {"type", "object"},
-            {"properties", new JsonObject()
-                {
-                    { _locationProperty, new JsonObject()
-                        {
-                            {"type", "string" },
-                            {"description", "The geographic location for which the weather information is requested." },
-                        }
-                    }
-                }
-            },
-            {"required", new JsonArray(_locationProperty)},
-            {"return_type", new JsonObject()
-                {
-                    {"type", "string"},
-                    {"description", "The weather condition at the specified location."},
-                }
-            },
-        };
-
-        JsonSchema = JsonSerializer.Deserialize<JsonElement>(metadata);
+        JsonSchema = JsonSerializer.Deserialize<JsonElement>(
+        """
+         {
+           "type": "object",
+           "properties": {
+             "Location": {
+               "type": "string",
+               "description": "The geographic location for which the weather information is requested."
+             }
+           },
+           "additionalProperties": false,
+           "required": ["Location"]
+         }
+        """);
     }
 
     public override string Name { get; }
 
-    public override string Description { get; }
+    public override string Description => "Retrieves weather information for a specified location."
 
     public override JsonElement JsonSchema { get; }
 
-    protected override Task<object> InvokeCoreAsync(IEnumerable<KeyValuePair<string, object>> arguments, CancellationToken cancellationToken)
+    protected override ValueTask<object> InvokeCoreAsync(AIFunctionArguments arguments, CancellationToken cancellationToken)
     {
-        var prompt = arguments.First(x => x.Key == _locationProperty).Value;
+        if (!arguments.TryGetValue("Location", out var prompt) || prompt is null) 
+        {
+            return ValueTask.FromResult<object>("Location is required.");
+        }
 
         string location = null;
 
         if (prompt is JsonElement jsonElement)
         {
             location = jsonElement.GetString();
-        }
-        else if (prompt is JsonNode jsonNode)
-        {
-            location = jsonNode.ToJsonString();
-        }
-        else if (prompt is string str)
-        {
-            location = str;
         }
         else
         {
@@ -236,7 +252,7 @@ public sealed class GetWeatherFunction : AIFunction
 
         var weather = Random.Shared.NextDouble() > 0.5 ? $"It's sunny in {location}." : $"It's raining in {location}.";
 
-        return Task.FromResult<object>(weather);
+        return ValueTask.FromResult<object>(weather);
     }
 }
 ```
@@ -256,6 +272,7 @@ services.AddAITool<GetWeatherFunction>(GetWeatherFunction.Name, options =>
 {
     options.Title = "Weather Getter";
     options.Description = "Retrieves weather information for a specified location.";
+    options.Category = "Service";
 });
 ```
 
@@ -405,10 +422,6 @@ After registering, navigate to **Artificial Intelligence** in the admin menu. Yo
 ### Configuring AI Profiles with Custom Functions
 
 Once the custom function is registered, you can add it to any AI profile. The custom function will be available in the list of functions when creating or editing a profile, and you can enable or disable it as needed.
-
----
-
-Here’s an improved version of your documentation with better structure, clarity, and consistency:  
 
 ---
 

@@ -35,13 +35,16 @@ To get started with any module, refer to its respective `README.md` file for det
 ## Available Modules
 You can install individual modules into your web project as needed, or install the `CrestApps.OrchardCore.Cms.Core.Targets` package to include all modules at once.
 
-### Artificial Intelligence (AI) Modules
+### Artificial Intelligence Suite
 
 #### AI Module
 Provides services for all AI modules and provide the interface for managing AI profiles and AI Deployments. See the [AI Module README](src/Modules/CrestApps.OrchardCore.AI/README.md) for more details.  
 
 #### AI Chat Module
 Provides interface for interacting with AI chat models like **ChatGPT** and others. See the [AI Chat Module README](src/Modules/CrestApps.OrchardCore.AI.Chat/README.md) for more details.  
+
+#### Orchard Core AI Agent Module
+Enhances the **AI Module** by providing AI Agents to perform tasks on your Orchard Core site. For more details, see the [Orchard Core AI Agent Module README](src/Modules/CrestApps.OrchardCore.AI.Agent/README.md).
 
 #### Model Context Protocol (MCP) Module
 Enhances the **AI Module** by adding support for connecting to any MCP server, whether hosted locally or remotely. For more details, see the [MCP Module README](src/Modules/CrestApps.OrchardCore.AI.Mcp/README.md).
@@ -81,6 +84,12 @@ Enhances user management with customizable display names and avatars. See the [U
 
 #### SignalR Module
 The **SignalR** module enables seamless integration of SignalR within Orchard Core. See the [SignalR Module README](src/Modules/CrestApps.OrchardCore.SignalR/README.md).  
+
+#### Enhanced Roles Module
+Extends the Orchard Core Roles module with additional reusable components. See the [Roles Module README](src/Modules/CrestApps.OrchardCore.Roles/README.md) for details.  
+
+#### Content Access Control Module
+Enables you to restrict content items based on user roles. See the [Content Access Control Module README](src/Modules/CrestApps.OrchardCore.ContentAccessControl/README.md) for details.  
 
 #### Resources Module
 Provides additional resources to accelerate development. See the [Resources Module README](src/Modules/CrestApps.OrchardCore.Resources/README.md).  

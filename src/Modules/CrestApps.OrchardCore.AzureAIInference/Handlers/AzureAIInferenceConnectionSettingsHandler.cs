@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Nodes;
+using CrestApps.Azure.Core.Models;
 using CrestApps.OrchardCore.AI.Core;
 using CrestApps.OrchardCore.AI.Models;
-using CrestApps.OrchardCore.Azure.Core.Models;
 using CrestApps.OrchardCore.AzureAIInference.Models;
 using CrestApps.OrchardCore.Core.Handlers;
 using CrestApps.OrchardCore.Models;
@@ -56,7 +56,7 @@ internal sealed class AzureAIInferenceConnectionSettingsHandler : ModelHandlerBa
             return Task.CompletedTask;
         }
 
-        var metadataNode = data["Properties"]?[nameof(AzureAIInferenceConnectionMetadata)]?.AsObject();
+        var metadataNode = data[nameof(AIProviderConnection.Properties)]?[nameof(AzureAIInferenceConnectionMetadata)]?.AsObject();
 
         if (metadataNode == null || metadataNode.Count == 0)
         {
