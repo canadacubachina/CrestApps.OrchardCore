@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
-    <OrchardCoreVersion>3.0.0-preview-18638</OrchardCoreVersion>
+    <OrchardCoreVersion>3.0.0-preview-18650</OrchardCoreVersion>
   </PropertyGroup>
   <ItemGroup>
     <!-- Miscellaneous Packages -->
